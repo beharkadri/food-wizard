@@ -4,6 +4,7 @@ import {
   addRemoveFavorite,
   fetchRecipe,
   fetchRecipes,
+  getLoggedInUser,
   getRecipeRating,
   isFavorite,
   rateRecipe,
@@ -24,6 +25,7 @@ const RecipeDetail = () => {
   const { id } = useParams();
   const [favorite, setFavorite] = useState(isFavorite(id));
   const [rating, setRating] = useState(getRecipeRating(id));
+  const user = getLoggedInUser();
 
   const getRecipe = async (id) => {
     try {
@@ -93,19 +95,23 @@ const RecipeDetail = () => {
             <p className="text-black text-[12px] md:text-md">SERVINGS</p>
           </div>
 
-          <div
-            onClick={handleFavorite}
-            className="flex flex-col justify-center items-center hover:cursor-pointer"
-          >
-            {favorite ? (
-              <HiHeart className="w-8 h-[38px] py-1.5 mb-2 text-red-500 " />
-            ) : (
-              <HiHeart className="w-8 h-[38px] py-1.5 mb-2 text-black" />
-            )}
-            <p className="text-black text-[12px] md:text-md">
-              {favorite ? "FAVORITE" : "ADD TO FAVORITES"}
-            </p>
-          </div>
+          {user ? (
+            <div
+              onClick={handleFavorite}
+              className="flex flex-col justify-center items-center hover:cursor-pointer"
+            >
+              {favorite ? (
+                <HiHeart className="w-8 h-[38px] py-1.5 mb-2 text-red-500 " />
+              ) : (
+                <HiHeart className="w-8 h-[38px] py-1.5 mb-2 text-black" />
+              )}
+              <p className="text-black text-[12px] md:text-md">
+                {favorite ? "FAVORITE" : "ADD TO FAVORITES"}
+              </p>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="w-full flex flex-col md:flex-row gap-8 py-20 pxx-4 md:px-10">
@@ -145,16 +151,20 @@ const RecipeDetail = () => {
               <p className="text-black">/</p>
             </div>
 
-            <div className="flex flex-col gap-3 mt-20">
-              <p className="text-[#FF928B] text-2xl">
-                Please leave a rating below
-              </p>
-              <Rating
-                initialValue={rating}
-                onClick={handleRating}
-                SVGclassName={"inline-block"}
-              />
-            </div>
+            {user ? (
+              <div className="flex flex-col gap-3 mt-20">
+                <p className="text-[#FF928B] text-2xl">
+                  Please leave a rating below
+                </p>
+                <Rating
+                  initialValue={rating}
+                  onClick={handleRating}
+                  SVGclassName={"inline-block"}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
 
           {/* RIGHT SIDE */}
