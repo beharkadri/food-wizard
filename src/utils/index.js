@@ -22,11 +22,10 @@ export async function fetchRecipe(id) {
 
 export const addUser = (data) => {
   const users = localStorage.getItem("users");
-  console.log("USERS", users);
   if (users) {
     const parsedUsers = JSON.parse(users);
     parsedUsers.push(data);
-    localStorage.setItem("users", JSON.stringify(data));
+    localStorage.setItem("users", JSON.stringify(parsedUsers));
   } else {
     localStorage.setItem("users", JSON.stringify([data]));
   }
@@ -71,8 +70,6 @@ export const getFavorites = () => {
 
 export const addRemoveFavorite = (data) => {
   const favorites = localStorage.getItem("favorites");
-  console.log("DATA", data);
-  console.log("favorites", favorites);
 
   if (favorites) {
     const parsedFavorites = JSON.parse(favorites);
@@ -125,8 +122,6 @@ export const getRecipeRating = (id) => {
 
 export const isFavorite = (id) => {
   const favorites = localStorage.getItem("favorites");
-  console.log("DATA", id);
-  console.log("favorites", favorites);
 
   if (favorites) {
     const parsedFavorites = JSON.parse(favorites);
