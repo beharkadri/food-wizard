@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+@font-face {
+  font-family: "RevelineDetania-Regular"; /*You can use whatever name that you want*/
+  src: url("../public/RevelineDetania-Regular.ttf") format("truetype");
+}
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
+  font-family: "RevelineDetania-Regular", sans-serif;
 }
-
-
 
 .custom-btn {
   @apply flex-row relative justify-center items-center py-2 px-6 outline-none;
@@ -22,7 +23,9 @@ body {
 } */
 
 .shadow {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .shadow1 {
@@ -30,7 +33,7 @@ body {
 }
 
 .bg_gradient {
-  @apply bg-gradient-to-t from-slate-900 to-transparent top-0
+  @apply bg-gradient-to-t from-slate-900 to-transparent top-0;
 }
 
 .dots-container {

@@ -10,23 +10,24 @@ const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("Vegan");
   const [limit, setLimit] = useState(30);
-  const [loading, setLaoding] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   const fetchRecipe = async () => {
+    setLoading(true);
     try {
       const data = await fetchRecipes({ query, limit });
 
       setRecipes(data);
 
-      setLaoding(false);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     } finally {
-      setLaoding(false);
+      setLoading(false);
     }
   };
 
@@ -41,14 +42,9 @@ const Recipes = () => {
   };
 
   useEffect(() => {
-    setLaoding(true);
-
     fetchRecipe();
   }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
   return (
     <div className="w-full">
       <div className="w-full flex items-center justify-center pt-10 pb-5 px-0 md:px-10">
@@ -65,25 +61,28 @@ const Recipes = () => {
           />
         </form>
       </div>
-
+      {!recipes ? <Loading /> : <></>}
       {recipes?.length > 0 ? (
         <>
-          <div className="w-full  flex flex-wrap gap-10 px-0 lg:px-10 py-10">
-            {recipes?.map((item, index) => (
-              <RecipeCard recipe={item} key={index} />
+          <div className="w-full  flex flex-wrap justify-center gap-10 px-0 lg:px-10 py-10">
+            {recipes?.map((item) => (
+              <RecipeCard recipe={item} key={item.recipe.uri} />
             ))}
           </div>
-
+          {loading ? <Loading /> : <></>}
           <div className="flex w-full items-center justify-center py-10">
             <Button
+              isDisabled={loading}
               title="Show More"
-              containerStyle="bg-green-800 text-white px-3 py-1 rounded-full text-sm"
+              containerStyle={`bg-${
+                loading ? "gray-500" : "[#912218]"
+              } text-white px-3 py-1 rounded-full text-sm`}
               handleClick={showMore}
             />
           </div>
         </>
       ) : (
-        <div className="text-white w-full items-center justify-center py-10">
+        <div className="text-black w-full items-center justify-center py-10">
           <p className="text-center">No Recipe Found</p>
         </div>
       )}

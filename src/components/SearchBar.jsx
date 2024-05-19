@@ -17,8 +17,8 @@ const Searchbar = ({
           value={value}
           onChange={handleInputChange}
           required={required}
-          className={`bg-black border border-gray-800
-         text-gray-300 text-md rounded-full focus:ring-1 focus:ring-slate-800 focus:border-slate-800 block
+          className={`bg-white border border-black
+         text-black text-md rounded-full focus:ring-1 focus:ring-slate-800 focus:border-slate-800 block
            w-full p-2.5 outline-none px-5 placeholder:text-sm shadow-xl`}
         />
         {rightIcon && (

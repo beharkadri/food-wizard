@@ -1,15 +1,16 @@
 import React from "react";
 import { Banner1, Banner2, Banner3, Banner4, Banner5 } from "../images";
+import { BiPlayCircle } from "react-icons/bi";
 
 const images = [Banner1, Banner2, Banner3, Banner4, Banner5];
 
 const Header = ({ title, image, type }) => {
   return (
     <div className="w-full h-[100vh]">
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full bg-transparent">
         <img
           src={image ?? images[Math.floor(Math.random() * images.length)]}
-          alt="Hero Image"
+          alt="Hero"
           className="w-full h-full object-cover"
         />
       </div>
@@ -18,8 +19,22 @@ const Header = ({ title, image, type }) => {
         <h1 className="text-white text-4xl md:text-5xl font-bold text-center">
           {title}
         </h1>
-        {type && (
-          <p className="text-sm mt-4 text-center text-green-500 bg-[#00000090] px-6 py-4 rounded-full ">
+        {type === "detail" ? (
+          <a
+            href="https://youtu.be/E_eQWp70ZM0"
+            target="_blank"
+            rel="noreferrer"
+            referrerPolicy="no-referrer"
+            className="bg-[#912218] flex gap-2 items-center justify-center rounded-full p-2 mt-4 text-lg text-white"
+          >
+            <span>Watch instruction video</span>
+            <BiPlayCircle />
+          </a>
+        ) : (
+          <></>
+        )}
+        {type === "home" && (
+          <p className="text-sm mt-4 text-center text-white bg-[#00000090] px-6 py-4 rounded-full ">
             Welcome to FoodWizard, your passport to culinary adventures!
             <br className="hidden md:block" /> Discover a treasure trove of
             delectable recipes from around the globe.

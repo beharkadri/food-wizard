@@ -4,14 +4,9 @@ import Recipes from "../components/Recipes";
 
 const Home = () => {
   return (
-    <main className="w-full flex flex-col">
+    <main className="w-full flex flex-col bg-white">
       <Header
-        title={
-          <p>
-            Taste the World with
-            <br /> FoodWizard!
-          </p>
-        }
+        title={<p>Explore our huge selection of delicious recipe ideas.</p>}
         type="home"
       />
 
